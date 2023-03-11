@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Form add team</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+    <div id="app">
+        <form-add-team ref="formulaire" @add-team="addTeam"></form-add-team>
+        <team-card v-for="team in allTeams" :id="team.id" :name="team.name" :description="team.description" @edit-team="editTeam" ></team-card>
+    </div>
+
+    <script src="./src/misc/constante.js"></script>
+    <script src="./src/dto/team.js"></script>
+
+    <script type="module">
+
+        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+        import FormAddTeam from '/src/view/form-add-team.js';
+        import TeamCard from '/src/view/team-card.js';
+
+        const app = createApp({
+            created() {
+                document.title = TITLE; 
+            },
+            data() {
+                return {
+                    allTeams: []
+                }
+            },
+            methods:{
+                addTeam: function(team){
+                    console.log('team.addTeam', team);
+
+                    this.allTeams.push(team); 
+                },
+                editTeam: function(team) {
+                    this.$refs.formulaire.editTeam(team)
+                },
+                
+            }
+        });
+
+        app.component('FormAddTeam', FormAddTeam)
+        .component('TeamCard', TeamCard);
+        app.mount('#app');
+    </script>
+</body>

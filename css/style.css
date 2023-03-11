@@ -1,0 +1,70 @@
+/* Global */
+
+.pointer {
+    cursor: pointer;
+}
+
+.col-6 {
+    width: 50%;
+    display: inline-block;
+}
+
+.text-center {
+    text-align: center;
+}
+
+
+/* Onglet */
+
+.menu-pannel {
+    background-color: #000000;
+    color: #ffffff;
+    width: 100%;
+}
+
+.menu-pannel-item {
+    display: inline-block;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.active {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* Formulaire */
+
+form label,
+form input {
+    display: block;
+}
+
+.input-group {
+    margin-bottom: 10px;
+}
+
+
+/* CARD */
+
+.card {
+    border: #000000 1px solid;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+}
+
+
+/* Erreur */
+
+.text-error {
+    color: red;
+}
+
+.box-error {
+    border: 1px solid red;
+}
