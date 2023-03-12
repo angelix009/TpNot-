@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+    <div id="app">
+        <home></home>
+    </div>
+
+    <script src="./src/misc/constante.js"></script>
+    <script src="./src/dto/team.js"></script>
+
+    <script type="module">
+
+        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+        import NewsCard from '/src/view/news-card.js';
+        import Home from '/src/view/home.js';
+
+        const app = createApp({
+            created() {
+                document.title = TITLE; 
+            },
+            
+        });
+
+        app.component('NewsCard', NewsCard)
+        .component('Home', Home);
+        app.mount('#app');
+    </script>
+</body>
