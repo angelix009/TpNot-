@@ -11,32 +11,63 @@
 <body>
     <div id="app">
         <h1>{{ title }}</h1>
-
-        <Navbar></Navbar>
-
-       
-            <Home></Home>
-    
-    </div>
+      
+        <Navbar @change-page="changePage"></Navbar>
+      
+        <div id="page-container">
+          <home v-if="currentPage === 'home'"></home>
+          <button v-if="currentPage === 'team'" @click="exportTeams">Export</button>
+          <form-add-team v-if="currentPage === 'team'" ref="formulaire" @add-team="addTeam"></form-add-team>
+          <team-card v-if="currentPage === 'team'"  v-for="team in allTeams" :id="team.id" :name="team.name" :description="team.description" @edit-team="editTeam" ></team-card>
+        </div>
+      </div>
     
     <script src="/src/misc/constante.js"></script>
 
     <script type="module">
         import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
-
+        import NewsCard from '/src/view/news-card.js';
         import Navbar from './src/view/navbar.js';
         import Home from '/src/view/home.js';
+        import FormAddTeam from '/src/view/form-add-team.js';
+        import TeamCard from '/src/view/team-card.js';
+
         
         const app = createApp({
             created() {
                 document.title = TITLE; 
+                
             },
-            
+            data() {
+                return {
+                    allTeams: [],
+                    currentPage: 'home',
+                }
+            },
+            methods:{
+                addTeam: function(team){
+                    console.log('team.addTeam', team);
+
+                    this.allTeams.push(team); 
+                },
+                editTeam: function(team) {
+                    this.$refs.formulaire.editTeam(team)
+                },
+                exportTeams: function() {
+                    console.log(JSON.stringify(this.allTeams));
+                },
+                changePage(page) {
+                    this.currentPage = page;
+                },
+            }
         });
 
    
         app.component('Navbar', Navbar)
-           
+            .component('NewsCard', NewsCard)
+            .component('Home', Home)
+            .component('FormAddTeam', FormAddTeam)
+            .component('TeamCard', TeamCard);
         app.mount('#app');
       </script>
 </body>
