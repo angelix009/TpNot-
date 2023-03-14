@@ -22,7 +22,7 @@ export default {
     },
     
     template:`
-        <div class="card">
+        <div class="card text-center">
             <h3> Team Id </h3> 
             <p> {{ id }}</p>
             <h3> Nom </h3> 
