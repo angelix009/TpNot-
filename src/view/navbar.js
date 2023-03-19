@@ -16,7 +16,7 @@ export default {
         this.links = [
           { label: 'home', url: links[0] },
           { label: 'team', url: links[1] },
-          { label: 'Results', url: links[2] }
+          { label: 'result', url: links[2] }
         ];
       },
       changePage(page) {

@@ -19,6 +19,9 @@
           <button v-if="currentPage === 'team'" @click="exportTeams">Export</button>
           <form-add-team v-if="currentPage === 'team'" ref="formulaire" @add-team="addTeam"></form-add-team>
           <team-card v-if="currentPage === 'team'"  v-for="team in allTeams" :id="team.id" :name="team.name" :description="team.description" @edit-team="editTeam" ></team-card>
+          <form-add-result v-if="currentPage === 'result'" :teams="this.allTeams" @add-result="addResult" ></form-add-result>
+          <result-card v-if="currentPage === 'result'"  v-for="result in allResults" :team1="result.team1" :team2="result.team2" :score1="result.score1" :score2="result.score2"></result-card>
+
         </div>
       </div>
     
@@ -30,7 +33,9 @@
         import Navbar from './src/view/navbar.js';
         import Home from '/src/view/home.js';
         import FormAddTeam from '/src/view/form-add-team.js';
+        import FormAddResult from '/src/view/form-add-result.js';
         import TeamCard from '/src/view/team-card.js';
+        import ResultCard from '/src/view/result-card.js';
 
         
         const app = createApp({
@@ -41,6 +46,7 @@
             data() {
                 return {
                     allTeams: [],
+                    allResults: [],
                     currentPage: 'home',
                 }
             },
@@ -59,6 +65,10 @@
                 changePage(page) {
                     this.currentPage = page;
                 },
+                addResult: function(result){
+                    console.log('WAAAAAAAA', this.allResults);
+                    this.allResults.push(result); 
+                },
             }
         });
 
@@ -67,7 +77,9 @@
             .component('NewsCard', NewsCard)
             .component('Home', Home)
             .component('FormAddTeam', FormAddTeam)
-            .component('TeamCard', TeamCard);
+            .component('FormAddResult', FormAddResult)
+            .component('TeamCard', TeamCard)
+            .component('ResultCard', ResultCard);
         app.mount('#app');
       </script>
 </body>
